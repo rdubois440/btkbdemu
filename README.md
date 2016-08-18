@@ -17,18 +17,10 @@ Be patient ...
 
 2- Update the feeds. packages bluez-libs and bluez-utils are in the packages feed
 
-rene@Sony:/opt/openwrt$ gvim feeds.conf.default 
-keep only the first line
-rene@Sony:/opt/openwrt$ cat feeds.conf.default 
-src-git packages https://github.com/openwrt/packages.git;for-15.05
-#src-git luci https://github.com/openwrt/luci.git;for-15.05
-#src-git routing https://github.com/openwrt-routing/packages.git;for-15.05
-
 ./scripts/feeds update -a
 
 rene@Sony:/opt/openwrt$ scripts/feeds install bluez-libs
 rene@Sony:/opt/openwrt$ scripts/feeds install bluez-utils
-
 
 
 make menuconfig
