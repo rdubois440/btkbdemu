@@ -255,7 +255,6 @@ int main(int argc, char *argv[])
 	}
 
 
-	printf("\nbtkbdemu DEM0 (c) Collin R. Mulliner <collin@betaversion.net> http://www.mulliner.org/bluetooth/\n\n");
 
 	if (mode == 0) {
 		cs = l2cap_listen(BDADDR_ANY, L2CAP_PSM_HIDP_CTRL, 0, 1);
@@ -545,7 +544,7 @@ int main(int argc, char *argv[])
 
 void usage()
 {
-	fprintf(stderr,	"\nbtkbdemu v0.1 Dec. 2005 Collin R. Mulliner <collin@betaversion.net>\n\n"\
+	fprintf(stderr,	"\nbtkbdemu \n\n"\
 			"syntax: btkbdemu -hsce\n\n"\
 			"\th\t\thelp\n"\
 			"\ts\t\tserver mode\n"\

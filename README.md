@@ -1,10 +1,9 @@
 ######  OpenWRT on Raspi
 
-1- Clone Barrier Breaker from github directory
-(I could not build the bluez feeds on Chaos Calmer)
+1- Clone Chaos Calmer from github directory
 
 cd SomeDirectory
-git clone git://git.openwrt.org/14.07/openwrt.git
+git clone git://git.openwrt.org/15.05/openwrt.git
 
 cd openwrt
 make menuconfig
@@ -26,13 +25,6 @@ rene@Sony:/opt/openwrt$ scripts/feeds install bluez-utils
 make menuconfig
 Enable bluez-libs and bluez-utils
 Kernel Modules --> Other Modules. Select kmod-bluetooth 
-
-make menuconfig again, save the config ...
-make
-
-Menu Utilities. Select it
-
-
 
 3- Create the custom package
 
@@ -65,6 +57,9 @@ mv Makefile.openwrt ../Makefile
 
 Check the last line, it should contain references to explicit libraries
 $(eval $(call BuildPackage,btkbdemu,+libusb,+libbluetooth))
+See also the line specifying a dependency to the bluez-utils package
+      DEPENDS:=bluez-utils
+
 
 
 At this point, the new package should be available in openwrt build
