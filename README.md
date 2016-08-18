@@ -1,6 +1,6 @@
 ######  OpenWRT on Raspi
 
-Clone Barrier Breaker from github directory
+1- Clone Barrier Breaker from github directory
 (I could not build the bluez feeds on Chaos Calmer)
 
 cd SomeDirectory
@@ -14,6 +14,35 @@ Save and quit
 make
 
 Be patient ...
+
+2- Update the feeds. packages bluez-libs and bluez-utils are in the packages feed
+
+rene@Sony:/opt/openwrt$ gvim feeds.conf.default 
+keep only the first line
+rene@Sony:/opt/openwrt$ cat feeds.conf.default 
+src-git packages https://github.com/openwrt/packages.git;for-15.05
+#src-git luci https://github.com/openwrt/luci.git;for-15.05
+#src-git routing https://github.com/openwrt-routing/packages.git;for-15.05
+
+./scripts/feeds update -a
+
+rene@Sony:/opt/openwrt$ scripts/feeds install bluez-libs
+rene@Sony:/opt/openwrt$ scripts/feeds install bluez-utils
+
+
+
+make menuconfig
+Enable bluez-libs and bluez-utils
+Kernel Modules --> Other Modules. Select kmod-bluetooth 
+
+make menuconfig again, save the config ...
+make
+
+Menu Utilities. Select it
+
+
+
+3- Create the custom package
 
 Create the directory
 mkdir /opt/openwrt/package/btkbdemu/src
@@ -47,48 +76,11 @@ $(eval $(call BuildPackage,btkbdemu,+libusb,+libbluetooth))
 
 
 At this point, the new package should be available in openwrt build
-make menuconfig
-Select it
-
-Update the feeds. packages bluez-libs and bluez-utils are in the packages feed
-
-rene@Sony:/opt/openwrt$ gvim feeds.conf.default 
-keep only the first line
-rene@Sony:/opt/openwrt$ cat feeds.conf.default 
-src-git packages https://github.com/openwrt/packages.git;for-15.05
-#src-git luci https://github.com/openwrt/luci.git;for-15.05
-#src-git routing https://github.com/openwrt-routing/packages.git;for-15.05
-
-./scripts/feeds update -a
-
-rene@Sony:/opt/openwrt$ scripts/feeds install bluez-libs
-Installing package 'bluez'
-Installing package 'python'
-Installing package 'sqlite3'
-Installing package 'gdbm'
-Installing package 'db47'
-Installing package 'libxml2'
-Installing package 'libffi'
-Installing package 'dbus'
-Installing package 'expat'
-Installing package 'glib2'
-Installing package 'attr'
-Installing package 'libical'
-
-rene@Sony:/opt/openwrt$ scripts/feeds install bluez-utils
-Collecting package info: done
-
-
-make menuconfig
-Enable bluez-libs and bluez-utils
-Kernel Modules --> Other Modules. Select kmod-bluetooth 
-
-make menuconfig again, save the config ...
+make menuconfig Select Utilities --> btkbdemu
 make
 
-Menu Utilities. Select it
+4- Create the SDCard
 
-Recreate the SDCard
 cd /bin/brcm2708
 
 rene@Sony:/opt/openwrt/bin/brcm2708$ ls -l *.img
@@ -103,11 +95,10 @@ su to root,
 76+0 records out
 79691776 bytes (80 MB) copied, 2.66479 s, 29.9 MB/s
 
-Check that it boots 
+5- Check it
 
-
-Boot the sd card
-Access the Raspi. 
+Insert the SDCard in the Raspi, and boot it
+Access the Raspi from the network, or from rs232
 ssh root@xxxxxxxxxx
 
 
