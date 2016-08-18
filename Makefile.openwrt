@@ -33,6 +33,7 @@ include $(INCLUDE_DIR)/package.mk
 # The variables defined here should be self explanatory.
 define Package/btkbdemu
 	SECTION:=utils
+	DEPENDS:=bluez-utils
 	CATEGORY:=Utilities
 	TITLE:=btkbdemu -- bluetooth keyboard emulator
 	#DESCRIPTION:=\
