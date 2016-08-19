@@ -99,35 +99,29 @@ DEPENDS:=bluez-utils
 At this point, the new package should be available in openwrt build
 `make menuconfig` 
 
-Select Utilities --> btkbdemu Activate it
-
-`make`
-
-Make sure the build terminates without error
+Select Utilities --> btkbdemu Activate it  
+`make`  
+Make sure the build terminates without error  
 
 ##4- Create the SDCard
 
-`cd /bin/brcm2708`
-
+`cd /bin/brcm2708`   
 `ls -l *.img`
 
--rw-r--r-- 1 rene rene 79691776 Aug 17 10:07 openwrt-brcm2708-bcm2708-sdcard-vfat-ext4.img
-
+-rw-r--r-- 1 rene rene 79691776 Aug 17 10:07 openwrt-brcm2708-bcm2708-sdcard-vfat-ext4.img   
 Notice the small size, 80 Mb
 
-su to root, copy the image to your SDCard. 
+su to root, copy the image to your SDCard.    
 
-**Make sure to use the correct target device ! ! ! /dev/YourSDCard will be deleted and cannot be recovered**
+**Make sure to use the correct target device ! ! !    
+/dev/YourSDCard will be deleted and cannot be recovered ! ! !** 
 
-In my case, I use a microsd card on an SDCard adapter, my target is `of=/dev/mmcblk0`
+In my case, I use a microsd card on an SDCard adapter, my target is `of=/dev/mmcblk0`  
+`sudo dd if=openwrt-brcm2708-bcm2708-sdcard-vfat-ext4.img of=/dev/YourSDCard bs=1M`  
 
-`sudo dd if=openwrt-brcm2708-bcm2708-sdcard-vfat-ext4.img of=/dev/YourSDCard bs=1M`
-
-76+0 records in
-
-76+0 records out
-
-79691776 bytes (80 MB) copied, 2.66479 s, 29.9 MB/s
+76+0 records in  
+76+0 records out  
+79691776 bytes (80 MB) copied, 2.66479 s, 29.9 MB/s  
 
 ##5- Check it
 
@@ -152,5 +146,5 @@ hci0:   Type: USB
 
 
 
-btkbdemu -c FC:19:10:FE:DE:9F
+`btkbdemu -c FC:19:10:FE:DE:9F`
 
