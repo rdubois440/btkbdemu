@@ -42,7 +42,7 @@
 //#include <cstdlib>
 #include <stdio.h>
 #include <string.h>
-//#include "usb.h"
+#include "usb.h"
 
 struct termios orig_termios;
 
@@ -253,6 +253,12 @@ int main(int argc, char *argv[])
 				exit(0);
 		}
 	}
+
+	printf("\nbtkbdemu DEM0 (c) Collin R. Mulliner <collin@betaversion.net> http://www.mulliner.org/bluetooth/\n\n");
+
+	sdp_open();
+	sdp_add_keyboard();
+	printf("sdp record created\n\n");
 
 
 
@@ -544,7 +550,7 @@ int main(int argc, char *argv[])
 
 void usage()
 {
-	fprintf(stderr,	"\nbtkbdemu \n\n"\
+	fprintf(stderr,	"\nbtkbdemu v0.1 Dec. 2005 Collin R. Mulliner <collin@betaversion.net>\n\n"\
 			"syntax: btkbdemu -hsce\n\n"\
 			"\th\t\thelp\n"\
 			"\ts\t\tserver mode\n"\
