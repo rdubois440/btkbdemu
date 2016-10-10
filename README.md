@@ -32,6 +32,10 @@ make menuconfig
 Enable bluez-libs and bluez-utils  
 Kernel Modules --> Other Modules. Select kmod-bluetooth    
 
+Deactivate dnsmasq and odhcp   
+Base System --> deactivate dnsmasq   
+Network --> deactivate odhcpd and odhcp6c   
+
 Save and quit
 
 `make`
@@ -132,19 +136,33 @@ Access the Raspi from the network, or from rs232
 `ssh root@xxxxxxxxxx`
 
 
-**PAIR THE DEVICES ! ! !** TBD
+Configure the network for dhcp client   
+the file /etc/config/network, lan section, should look like this   
 
-Make sure bluetooth is started and available. pscan and iscan visibility are not required
+```
+config interface 'lan'
+        option ifname 'eth0'
+        option proto 'dhcp'
+```
+
+
+Make sure bluetooth is started and available. pscan and iscan visibility are not required   
+if not started, start bluetooth with   
+
 
 `root@OpenWrt:~/rene# hciconfig hci0`
 
+```
 hci0:   Type: USB
         BD Address: 00:0D:88:8E:E8:49 ACL MTU: 192:8 SCO MTU: 64:8
         UP RUNNING 
         RX bytes:2580 acl:32 sco:0 events:80 errors:0
         TX bytes:881 acl:22 sco:0 commands:49 errors:0
+```
 
 
 
 `btkbdemu -c FC:19:10:FE:DE:9F`
 
+**PAIR THE DEVICES - see separate instructions   
+ 
