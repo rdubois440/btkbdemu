@@ -256,9 +256,9 @@ int main(int argc, char *argv[])
 
 	printf("\nbtkbdemu DEM0 (c) Collin R. Mulliner <collin@betaversion.net> http://www.mulliner.org/bluetooth/\n\n");
 
-	sdp_open();
-	sdp_add_keyboard();
-	printf("sdp record created\n\n");
+	//sdp_open();
+	//sdp_add_keyboard();
+	//printf("sdp record created\n\n");
 
 
 
