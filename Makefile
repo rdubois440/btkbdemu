@@ -4,13 +4,13 @@ LIBS=-lbluetooth
 all:  btkbdemu  
 
 btkbdemu: btkbdemu.o  sdp.o
-	$(CC) $(CFLAGS) $(LIBS) btkbdemu.o sdp.o -o btkbdemu -l usb
+	$(CC) $(CFLAGS) $(LIBS) btkbdemu.o sdp.o -o btkbdemu
 
 btkbdemu.o: btkbdemu.c
-	gcc -c btkbdemu.c
+	$(CC) $(CFLAGS)  -c btkbdemu.c
 
 sdp.o: sdp.c
-	gcc -c sdp.c
+	$(CC) $(CFLAGS)  -c sdp.c
 
 
 clean:
