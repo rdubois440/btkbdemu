@@ -28,9 +28,9 @@ packages bluez-libs and bluez-utils must be updated from the feeds
 
 
 
-make menuconfig
-Enable bluez-libs and bluez-utils
-Kernel Modules --> Other Modules. Select kmod-bluetooth 
+make menuconfig   
+Enable bluez-libs and bluez-utils  
+Kernel Modules --> Other Modules. Select kmod-bluetooth    
 
 Save and quit
 
