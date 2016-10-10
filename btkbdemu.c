@@ -42,7 +42,6 @@
 //#include <cstdlib>
 #include <stdio.h>
 #include <string.h>
-#include "usb.h"
 
 struct termios orig_termios;
 
