@@ -107,6 +107,8 @@ If nothing helps
 
 * Make sure to start btkbdemu on server mode before paring
 * Stop / Start Bluetooth on phone, and freshly scan for BT devices
+* Make sure the phone is not already using bluetooth for some other connection (audio...)   
+* Make sure the raspi is not already using a bluetooth connection, or waiting for an hid connection
 * Reboot the phone
 * Reboot the raspi
 * Use a different BT Dongle
