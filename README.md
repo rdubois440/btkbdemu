@@ -166,3 +166,46 @@ hci0:   Type: USB
 
 **PAIR THE DEVICES - see separate instructions   
  
+#Using a TP-Link MR3020 router
+
+The beauty of OpenWrt is that it is very easy to port to another platform. The TP-Link MR3020 is a very nice platform for this application. 
+It contains the required USB port for the USB dongle.   
+
+##Warning - Do not use Chaos Calmer
+
+Under Chaos Calmer, I could generate the initial image, and flash it to the router. But as soon as I modifiy the initial package selection, the build process will not run to the end.   
+The .bin image file is not created, or not updated anymore, and the result of the new build cannot be flashed   
+Using Barrier Breaker, the problem goes away
+
+##Build procedure
+
+Use this command to clone the git repository
+```
+git clone -b barrier_breaker git://github.com/openwrt/openwrt.git
+```
+
+The rest of the instructions is unchanged
+
+
+##Flashing to the Router
+First time flashing can be done easily from the GUI following the user guide. But the image created by this process does not contain the Luci interface, 
+further flashing must be done from the command line
+
+
+login to the router
+```
+ssh root@192.168.0.1
+```
+The /tmp file system contains enough space for the new firmware, copy it there
+```
+cd /tmp
+scp user@192.168.1.240:/opt/openwrt/bin/ar71xx/openwrt-ar71xx-generic-tl-mr3020-v1-squashfs-sysupgrade.bin .
+sysupgrade -v ./openwrt-ar71xx-generic-tl-mr3020-v1-squashfs-sysupgrade.bin .
+```
+Wait for the router to reboot, login again, and run the program
+```
+ssh root@192.168.0.1
+btkbdemu -c AA:BB:CC:DD:DD:FF
+
+```
+
